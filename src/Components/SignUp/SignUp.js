@@ -67,7 +67,7 @@ function SignUp() {
             </Button>
             <p className="existingUser">
               Already Signed Up?
-              <Link to="/login">Sign In</Link>
+              <Link to="/">Sign In</Link>
             </p>
           </form>
         </Grid>

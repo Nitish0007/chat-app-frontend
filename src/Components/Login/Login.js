@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 import "./Login.css";
 import svg from "../raw-material/signIn.svg";
-import SignUp from "../SignUp/SignUp";
+// import SignUp from "../SignUp/SignUp";
 import { Grid, TextField, Button } from "@material-ui/core";
 
 const Login = () => {
