@@ -1,11 +1,36 @@
-import React from "react";
+import React, { useRef, useState } from "react";
 import { Link } from "react-router-dom";
-import { Grid, TextField, Button } from "@material-ui/core";
+import {
+  Grid,
+  TextField,
+  Button,
+  InputAdornment,
+  IconButton,
+} from "@material-ui/core";
+import VisibilityIcon from "@material-ui/icons/Visibility";
+import VisibilityOffIcon from "@material-ui/icons/VisibilityOff";
 
 import "./SignUp.css";
 import svg from "../raw-material/signUp.svg";
 
 function SignUp() {
+  const email = useRef();
+  const passRef = useRef();
+  const ConfirmpassRef = useRef();
+
+  const [visiblity, setVisiblity] = useState(false);
+  const [confirmVisiblity, setConfirmVisiblity] = useState(false);
+
+  const validateEmail = (email) => {
+    const regex = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    return regex.test(String(email).toLowerCase());
+  };
+
+  const onsubmit = () => {
+    console.log(validateEmail(email.current.value));
+    // !validateEmail(email.current.value) ? " " : console.log("error");
+  };
+
   return (
     <div className="outerContainer">
       <Grid
@@ -23,6 +48,7 @@ function SignUp() {
             onSubmit={(e) => {
               e.preventDefault();
               console.log("submitting");
+              validateEmail(email);
               onsubmit();
             }}
           >
@@ -38,7 +64,7 @@ function SignUp() {
                 />
               </Grid>
               <TextField
-                // inputRef={email}
+                inputRef={email}
                 id="standard-basic"
                 label="Email"
                 type="text"
@@ -46,20 +72,48 @@ function SignUp() {
                 style={{ backgroundColor: "#d565fa" }}
               />
               <TextField
-                // inputRef={password}
+                inputRef={passRef}
                 id="standard"
                 label="Password"
-                type="text"
+                type={visiblity ? "text" : "password"}
                 placeholder="Enter password"
-                style={{ backgroundColor: "#d565fa" }}
+                InputProps={{
+                  endAdornment: (
+                    <InputAdornment position="end">
+                      <IconButton
+                        aria-label="Toggle password visibility"
+                        onClick={() => setVisiblity(!visiblity)}
+                      >
+                        {visiblity ? <VisibilityIcon /> : <VisibilityOffIcon />}
+                      </IconButton>
+                    </InputAdornment>
+                  ),
+                }}
+                style={{ backgroundColor: "#d565fa", width: "12.2rem" }}
               />
               <TextField
-                // inputRef={password}
+                inputRef={ConfirmpassRef}
                 id="standard"
                 label="Confirm Password"
-                type="text"
+                type={confirmVisiblity ? "text" : "password"}
                 placeholder="Confirm password"
-                style={{ backgroundColor: "#d565fa" }}
+                InputProps={{
+                  endAdornment: (
+                    <InputAdornment position="end">
+                      <IconButton
+                        aria-label="Toggle password visibility"
+                        onClick={() => setConfirmVisiblity(!confirmVisiblity)}
+                      >
+                        {confirmVisiblity ? (
+                          <VisibilityIcon />
+                        ) : (
+                          <VisibilityOffIcon />
+                        )}
+                      </IconButton>
+                    </InputAdornment>
+                  ),
+                }}
+                style={{ backgroundColor: "#d565fa", width: "12.2rem" }}
               />
             </div>
             <Button type="submit" variant="contained">

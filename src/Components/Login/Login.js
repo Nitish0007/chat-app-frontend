@@ -1,14 +1,26 @@
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import { Link } from "react-router-dom";
+import {
+  Grid,
+  TextField,
+  Button,
+  InputAdornment,
+  IconButton,
+} from "@material-ui/core";
+import VisibilityIcon from "@material-ui/icons/Visibility";
+import VisibilityOffIcon from "@material-ui/icons/VisibilityOff";
 
 import "./Login.css";
 import svg from "../raw-material/signIn.svg";
-// import SignUp from "../SignUp/SignUp";
-import { Grid, TextField, Button } from "@material-ui/core";
 
 const Login = () => {
   const email = useRef();
-  const password = useRef();
+  const passRef = useRef();
+  const [visiblity, setVisiblity] = useState(false);
+
+  const handleClickShowPassword = () => {
+    setVisiblity(!visiblity);
+  };
 
   const validateEmail = (email) => {
     const regex = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
@@ -17,7 +29,14 @@ const Login = () => {
 
   const onsubmit = () => {
     console.log(validateEmail(email.current.value));
-    // !validateEmail(email.current.value) ? " " : console.log("error");
+    const filled = validateEmail(email.current.value);
+
+    if (filled) {
+      return null;
+    } else {
+      // email.helperText = "email field cant be empty";
+      console.log("email is not correct");
+    }
   };
 
   return (
@@ -36,7 +55,7 @@ const Login = () => {
             className="signInForm"
             onSubmit={(e) => {
               e.preventDefault();
-              console.log("submitting");
+              // console.log("submitting");
               onsubmit();
             }}
           >
@@ -47,16 +66,32 @@ const Login = () => {
                 id="standard-basic"
                 label="Email"
                 type="text"
+                helperText={
+                  email.value === " " ? "Email field can't be empty" : ""
+                }
                 placeholder="Enter your email"
                 style={{ backgroundColor: "#d565fa" }}
               />
               <TextField
-                inputRef={password}
+                autoComplete="off"
+                inputRef={passRef}
                 id="standard"
                 label="Password"
-                type="text"
+                type={visiblity ? "text" : "password"}
+                InputProps={{
+                  endAdornment: (
+                    <InputAdornment position="end">
+                      <IconButton
+                        aria-label="Toggle password visibility"
+                        onClick={handleClickShowPassword}
+                      >
+                        {visiblity ? <VisibilityIcon /> : <VisibilityOffIcon />}
+                      </IconButton>
+                    </InputAdornment>
+                  ),
+                }}
                 placeholder="Enter your name"
-                style={{ backgroundColor: "#d565fa" }}
+                style={{ backgroundColor: "#d565fa", width: "12.2rem" }}
               />
             </div>
             <Button type="submit" variant="contained">
