@@ -34,7 +34,6 @@ const Login = () => {
     if (filled) {
       return null;
     } else {
-      // email.helperText = "email field cant be empty";
       console.log("email is not correct");
     }
   };
@@ -50,12 +49,12 @@ const Login = () => {
         <Grid className="svgBox" item xs={12} sm={5} md={5} lg={5}>
           <img className="sideSVG" src={svg} alt=" "></img>
         </Grid>
+
         <Grid className="loginBox" item xs={12} sm={7} md={7} lg={7}>
           <form
             className="signInForm"
             onSubmit={(e) => {
               e.preventDefault();
-              // console.log("submitting");
               onsubmit();
             }}
           >
@@ -72,6 +71,7 @@ const Login = () => {
                 placeholder="Enter your email"
                 style={{ backgroundColor: "#d565fa" }}
               />
+
               <TextField
                 autoComplete="off"
                 inputRef={passRef}
@@ -94,12 +94,19 @@ const Login = () => {
                 style={{ backgroundColor: "#d565fa", width: "12.2rem" }}
               />
             </div>
+
             <Button type="submit" variant="contained">
               Sign In
             </Button>
+
             <p className="newUser">
               New User?
               <Link to="/signup">Sign Up</Link>
+            </p>
+
+            {/* temp link */}
+            <p>
+              <Link to="/chat">Chatpage</Link>
             </p>
           </form>
         </Grid>

@@ -1,0 +1,28 @@
+:root {
+  --bluishShade: #dfe9f1;
+  --greyShade: #e0e0e0;
+}
+.mainContainer {
+  height: 100%;
+  width: 100%;
+  background-color: var(--bluishShade);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.innerContainer {
+  height: 80%;
+  width: 60% !important;
+  background-color: white;
+  border-radius: 1rem;
+  padding: 0.5%;
+  box-shadow: 0 0 10px 0.8px var(--greyShade);
+}
+.leftsection {
+  background-color: white;
+  /* padding: 0.5rem; */
+}
+.rightsection {
+  border-radius: 0.5rem;
+  background-color: var(--bluishShade);
+}
