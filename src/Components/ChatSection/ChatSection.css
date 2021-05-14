@@ -1,0 +1,21 @@
+:root {
+  --primary-bg: #d369f7;
+  --svg-color: #cf3ffdf;
+}
+.chatsection {
+  border-radius: 0.5rem;
+}
+.title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-top-right-radius: 0.5rem;
+  border-top-left-radius: 0.5rem;
+  padding: 0.5rem;
+  background-color: var(--primary-bg);
+}
+
+.title_avatar {
+  display: flex;
+  align-items: center;
+}

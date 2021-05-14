@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import { connect } from "react-redux";
 
@@ -14,7 +14,7 @@ function App(props) {
   const debounce = () => {
     clearTimeout(timer);
     timer = setTimeout(() => {
-      props.mobileViewAction(window.innerWidth < 600);
+      props.mobileViewAction(window.innerWidth < 960);
     }, 700);
   };
 
@@ -23,13 +23,15 @@ function App(props) {
   return (
     <div className="App">
       <Router>
-        <Route path="/" component={Login} exact>
+        <Route path="/" exact>
           <Login />
         </Route>
-        <Route path="/signup" component={SignUp}>
+        <Route path="/signup">
           <SignUp />
         </Route>
-        <Route path="/chat" component={Chat}></Route>
+        <Route path="/chat">
+          <Chat />
+        </Route>
       </Router>
     </div>
   );

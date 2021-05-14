@@ -3,6 +3,7 @@ import { Grid } from "@material-ui/core";
 import { connect } from "react-redux";
 
 import "./Chat.css";
+import ChatSection from "../ChatSection/ChatSection";
 import FriendsList from "../FriendsList/FriendsList";
 import Profile from "../Profile/Profile";
 // import ProfilePic from "../ProfilePic/ProfilePic";
@@ -40,7 +41,9 @@ function Chat(props) {
           md={7}
           lg={8}
           xl={8}
-        ></Grid>
+        >
+          <ChatSection />
+        </Grid>
       </Grid>
     </div>
   );
@@ -48,8 +51,8 @@ function Chat(props) {
 
 const mapStateToProps = (state) => {
   return {
-    mobileView: state.mobileView,
-    mobileView: window.innerWidth < 700,
+    // mobileView: state.mobileView,
+    mobileView: window.innerWidth < 960,
   };
 };
 

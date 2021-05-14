@@ -8,3 +8,22 @@
   padding: 1rem;
   border-radius: 0.5rem;
 }
+.name {
+  margin: 0;
+}
+.linkSection {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.linkSection > h6 {
+  margin: 0;
+  margin-right: 0.5rem;
+}
+.textSection {
+  display: flex;
+  align-items: center;
+}
+.linkfield {
+  height: 1rem !important;
+}
