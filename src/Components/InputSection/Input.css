@@ -1,0 +1,14 @@
+.inputSection {
+  display: flex;
+  align-items: center;
+  padding: 0.5rem;
+  /* bottom: -100%; */
+}
+.inputSection > input {
+  width: 90%;
+  height: 50%;
+  border-radius: 0.5rem;
+  outline: none;
+  padding: 5px;
+  border: 1px solid black;
+}

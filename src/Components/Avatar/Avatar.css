@@ -1,0 +1,15 @@
+:root {
+  --bluishShade: #dfe9f1;
+  --greyShade: #e0e0e0;
+}
+.avatar {
+  display: flex;
+  align-items: center;
+  padding: 0.5rem;
+  background-color: var(--bluishShade);
+  width: 100%;
+  border-radius: 0.5rem;
+}
+.userName {
+  margin-left: 0.5rem;
+}

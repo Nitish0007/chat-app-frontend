@@ -2,6 +2,9 @@
   height: 100vh;
   width: 100%;
 } */
+* {
+  box-sizing: border-box;
+}
 :root {
   --primary-bg: #d369f7;
   --svg-color: #cf3ffdf;

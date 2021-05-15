@@ -1,6 +1,7 @@
 import React, { useRef } from "react";
 import { IconButton } from "@material-ui/core";
 import FileCopyIcon from "@material-ui/icons/FileCopy";
+import AddCircleIcon from "@material-ui/icons/AddCircle";
 
 import "./Profile.css";
 import ProfilePic from "../ProfilePic/ProfilePic";
@@ -29,6 +30,9 @@ function Profile() {
           />
           <IconButton onClick={handleCopyLink}>
             <FileCopyIcon />
+          </IconButton>
+          <IconButton>
+            <AddCircleIcon />
           </IconButton>
         </div>
       </div>

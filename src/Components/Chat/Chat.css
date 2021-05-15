@@ -1,4 +1,5 @@
 :root {
+  --primary-bg: #d369f7;
   --bluishShade: #dfe9f1;
   --greyShade: #e0e0e0;
 }
@@ -11,8 +12,8 @@
   justify-content: center;
 }
 .innerContainer {
-  height: 80%;
-  width: 60% !important;
+  height: 95%;
+  width: 75% !important;
   background-color: white;
   border-radius: 1rem;
   padding: 0.5%;

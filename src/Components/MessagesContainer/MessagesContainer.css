@@ -1,0 +1,8 @@
+.messageBox {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  flex: 10;
+  height: 100%;
+  padding: 10px;
+}

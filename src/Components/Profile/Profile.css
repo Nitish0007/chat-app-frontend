@@ -25,5 +25,7 @@
   align-items: center;
 }
 .linkfield {
-  height: 1rem !important;
+  height: 1.3rem !important;
+  width: 50%;
+  overflow: hidden;
 }
