@@ -1,14 +1,16 @@
-import React from "react";
+import React, { forwardRef } from "react";
 
 import "./FriendMessage.css";
 
-function FreindMessage() {
+const FreindMessage = forwardRef((props, ref) => {
   return (
-    <div className="friendMessage">
-      <p className="text">hlo evryone</p>
-      <p className="time">00:00</p>
+    <div className="fullContainer" ref={ref}>
+      <div className="friendMessage">
+        <p className="text">{props.text}</p>
+      </div>
+      <span className="time">{props.time}</span>
     </div>
   );
-}
+});
 
 export default FreindMessage;

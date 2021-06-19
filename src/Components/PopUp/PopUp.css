@@ -1,0 +1,37 @@
+.modal {
+  background-color: var(--bluishShade);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  padding: 1.5rem;
+  padding-top: 0.5rem;
+  margin: auto;
+}
+.modal_title {
+  margin: 0;
+}
+.MuiDivider-root {
+  width: 80%;
+}
+.modal_input {
+  margin: 1rem;
+  border: 1px solid black;
+  border-radius: 0.3rem;
+  outline: none;
+  padding: 0.5rem;
+}
+.modal_btn {
+  background-color: var(--primary-bg);
+  outline: none;
+  border: 1px solid purple;
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+  transition: all 0.7s;
+}
+.modal_btn:hover {
+  box-shadow: 0 0 5px 0.3px var(--primary-bg);
+}
+.modal_btn:active {
+  transform: scale(0.93);
+}

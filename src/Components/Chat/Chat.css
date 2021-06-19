@@ -21,10 +21,15 @@
 }
 .leftsection {
   background-color: white;
-  /* padding: 0.5rem; */
+  display: flex;
+  flex-direction: column;
+  flex: 5;
+  height: 100%;
 }
 .rightsection {
   border-radius: 0.5rem;
   background-color: var(--bluishShade);
   padding: 0 !important;
+  height: 100%;
+  overflow: hidden;
 }

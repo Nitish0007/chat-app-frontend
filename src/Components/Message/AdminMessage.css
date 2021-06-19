@@ -1,11 +1,16 @@
+.adminContainer > span {
+  display: flex;
+  margin-left: auto;
+  justify-content: flex-end;
+  font-size: small;
+}
 .adminMessage {
   background-color: var(--greyShade);
-  /* background-color: white; */
   width: fit-content;
   max-width: 70%;
   padding: 0.5rem;
   border-radius: 10px;
-  border-top-left-radius: 0;
+  border-top-right-radius: 0;
   margin-left: auto;
 }
 .text {

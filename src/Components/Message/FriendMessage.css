@@ -1,6 +1,12 @@
+.fullContainer > span {
+  display: flex;
+  margin-left: auto;
+  justify-content: flex-start;
+  font-size: small;
+}
 .friendMessage {
-  /* background-color: var(--greyShade); */
-  background-color: white;
+  background-color: purple;
+  color: white;
   width: fit-content;
   max-width: 70%;
   padding: 0.5rem;
@@ -9,10 +15,5 @@
   margin-right: auto;
 }
 .text {
-  margin: 0;
-}
-.time {
-  font-size: small;
-  text-align: end;
   margin: 0;
 }

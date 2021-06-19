@@ -1,6 +1,25 @@
 .head {
   margin: 0;
 }
+.friendslist {
+  overflow: hidden;
+}
+
 .divider {
   margin-bottom: 5px !important;
+}
+.list {
+  height: 85%;
+}
+.list > li {
+  margin: 2px;
+  width: 100%;
+}
+.list::-webkit-scrollbar {
+  display: none;
+}
+
+.list {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }

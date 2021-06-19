@@ -11,10 +11,8 @@ import reducer from "./Store/reducer";
 const store = createStore(reducer, composeWithDevTools());
 
 ReactDOM.render(
-  <React.StrictMode>
-    <Provider store={store}>
-      <App />
-    </Provider>
-  </React.StrictMode>,
+  <Provider store={store}>
+    <App />
+  </Provider>,
   document.getElementById("root")
 );

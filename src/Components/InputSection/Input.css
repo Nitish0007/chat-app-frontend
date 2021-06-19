@@ -7,8 +7,9 @@
 .inputSection > input {
   width: 90%;
   height: 50%;
-  border-radius: 0.5rem;
+  border-radius: 0.8rem;
   outline: none;
-  padding: 5px;
+  padding: 1rem;
   border: 1px solid black;
+  font-size: 15px;
 }

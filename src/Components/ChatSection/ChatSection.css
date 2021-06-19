@@ -8,6 +8,20 @@
   flex-direction: column;
   height: 100%;
 }
+.emptyChat {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.emptyChat > img {
+  height: 80%;
+  width: 80%;
+}
+.imageText {
+  font-size: large;
+  position: absolute;
+  bottom: 5rem;
+}
 .title {
   display: flex;
   align-items: center;

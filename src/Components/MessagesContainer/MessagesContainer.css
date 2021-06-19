@@ -5,4 +5,14 @@
   flex: 10;
   height: 100%;
   padding: 10px;
+  overflow-y: scroll;
+}
+.messageBox::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.messageBox {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
 }

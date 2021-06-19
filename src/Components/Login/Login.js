@@ -1,5 +1,6 @@
 import React, { useRef, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
+import { connect } from "react-redux";
 import {
   Grid,
   TextField,
@@ -13,30 +14,51 @@ import VisibilityOffIcon from "@material-ui/icons/VisibilityOff";
 import "./Login.css";
 import svg from "../raw-material/signIn.svg";
 
-const Login = () => {
-  const email = useRef();
-  const passRef = useRef();
-  const [visiblity, setVisiblity] = useState(false);
+/*********************************************************************/
 
+const Login = (props) => {
+  const [fieldError, setFieldError] = useState({
+    username: "",
+    password: "",
+  });
+  const history = useHistory();
+  const usernameref = useRef();
+  const passref = useRef();
+  const [visiblity, setVisiblity] = useState(false);
   const handleClickShowPassword = () => {
     setVisiblity(!visiblity);
   };
 
-  const validateEmail = (email) => {
-    const regex = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-    return regex.test(String(email).toLowerCase());
-  };
+  /*******************************************************************/
 
   const onsubmit = () => {
-    console.log(validateEmail(email.current.value));
-    const filled = validateEmail(email.current.value);
-
-    if (filled) {
-      return null;
-    } else {
-      console.log("email is not correct");
-    }
+    fetch(`${process.env.REACT_APP_SERVER}/`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        userName: usernameref.current.value,
+        password: passref.current.value,
+      }),
+    })
+      .then(async (res) => {
+        const data = await res.json();
+        if (!data.status) {
+          alert(data.message);
+          return;
+        } else {
+          props.isLoggedIn(data);
+          localStorage.setItem("userData", JSON.stringify(data));
+          history.push("/chat");
+        }
+      })
+      .catch((err) => {
+        console.log("Can't log In", err);
+      });
   };
+
+  /****************************************************************/
 
   return (
     <div className="outerContainer">
@@ -61,23 +83,44 @@ const Login = () => {
             <h1 className="title">Sign In</h1>
             <div className="inputArea">
               <TextField
-                inputRef={email}
+                inputRef={usernameref}
                 id="standard-basic"
-                label="Email"
+                label="Username"
                 type="text"
-                helperText={
-                  email.value === " " ? "Email field can't be empty" : ""
-                }
-                placeholder="Enter your email"
+                error={fieldError.username === "" ? false : true}
+                helperText={fieldError.username}
+                onBlur={(e) => {
+                  const myfieldError = { ...fieldError };
+                  if (e.target.value) {
+                    myfieldError.username = "";
+                    setFieldError(myfieldError);
+                  } else {
+                    myfieldError.username = "Username field can't be empty";
+                    setFieldError(myfieldError);
+                  }
+                }}
+                placeholder="Enter Username"
                 style={{ backgroundColor: "#d565fa" }}
               />
 
               <TextField
                 autoComplete="off"
-                inputRef={passRef}
+                inputRef={passref}
                 id="standard"
                 label="Password"
                 type={visiblity ? "text" : "password"}
+                error={fieldError.password === "" ? false : true}
+                helperText={fieldError.password}
+                onBlur={(e) => {
+                  const myfieldError = { ...fieldError };
+                  if (e.target.value) {
+                    myfieldError.password = "";
+                    setFieldError(myfieldError);
+                  } else {
+                    myfieldError.password = "password field can't be empty";
+                    setFieldError(myfieldError);
+                  }
+                }}
                 InputProps={{
                   endAdornment: (
                     <InputAdornment position="end">
@@ -90,7 +133,7 @@ const Login = () => {
                     </InputAdornment>
                   ),
                 }}
-                placeholder="Enter your name"
+                placeholder="Enter password"
                 style={{ backgroundColor: "#d565fa", width: "12.2rem" }}
               />
             </div>
@@ -103,11 +146,6 @@ const Login = () => {
               New User?
               <Link to="/signup">Sign Up</Link>
             </p>
-
-            {/* temp link */}
-            <p>
-              <Link to="/chat">Chatpage</Link>
-            </p>
           </form>
         </Grid>
       </Grid>
@@ -115,4 +153,36 @@ const Login = () => {
   );
 };
 
-export default Login;
+/*****************************************************************/
+
+const mapStateToProps = (state) => {
+  return {
+    uid: state.uid,
+    socket: state.socket,
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    isLoggedIn: (data) =>
+      dispatch({
+        type: "IS_LOGGED_IN",
+        auth: data.auth,
+        name: data.user.name,
+        uid: data.user.uid,
+        userName: data.user.username,
+        friends: data.user.friends,
+        messages: data.user.messages,
+        rooms: data.user.friends.chatrooms,
+      }),
+    setSocket: (socket) =>
+      dispatch({
+        type: "SET_SOCKET",
+        socket: socket,
+      }),
+  };
+};
+
+/*****************************************************************/
+
+export default connect(mapStateToProps, mapDispatchToProps)(Login);
