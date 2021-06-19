@@ -9,6 +9,7 @@ import SignUp from "./Components/SignUp/SignUp";
 import Chat from "./Components/Chat/Chat";
 
 const socket = io.connect(process.env.REACT_APP_SERVER);
+console.log(socket);
 
 let timer;
 
