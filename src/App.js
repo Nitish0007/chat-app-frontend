@@ -8,7 +8,6 @@ import Login from "./Components/Login/Login";
 import SignUp from "./Components/SignUp/SignUp";
 import Chat from "./Components/Chat/Chat";
 
-io.set('transports', ['websocket']);
 const socket = io.connect(process.env.REACT_APP_SERVER);
 
 let timer;
