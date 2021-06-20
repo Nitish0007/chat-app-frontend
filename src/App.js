@@ -8,7 +8,7 @@ import Login from "./Components/Login/Login";
 import SignUp from "./Components/SignUp/SignUp";
 import Chat from "./Components/Chat/Chat";
 
-const socket = io.connect(https://react-project-chat-app.herokuapp.com/);
+const socket = io.connect('https://react-project-chat-app.herokuapp.com/');
 console.log(socket);
 
 let timer;
